@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sizning yangi HTML saytingiz</title>
+  <meta name="description" content="Oddiy, toza va responsiv HTML sahifa - demo">
+  <style>
+    /* --- Reset-ish --- */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+    a{color:inherit;text-decoration:none}
+
+    /* --- Basic layout --- */
+    header{background:linear-gradient(90deg,#4f46e5,#06b6d4);color:#fff}
+    .container{max-width:1100px;margin:0 auto;padding:1rem}
+
+    /* --- Navbar --- */
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{font-weight:700;font-size:1.1rem}
+    nav ul{display:flex;gap:0.75rem;list-style:none;margin:0;padding:0}
+    .nav-btn{display:none;background:transparent;border:2px solid rgba(255,255,255,0.2);padding:0.35rem 0.6rem;border-radius:8px;color:#fff}
+
+    /* --- Hero --- */
+    .hero{padding:4rem 0;display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:center}
+    .hero h1{font-size:2rem;margin:0 0 0.5rem}
+    .hero p{margin:0 0 1rem;color:rgba(255,255,255,0.9)}
+    .cta{display:inline-block;background:#fff;color:#0f172a;padding:0.6rem 1rem;border-radius:8px;font-weight:600}
+    .mock{background:rgba(255,255,255,0.06);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+
+    /* --- Features --- */
+    section.features{padding:3rem 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .card{background:#fff;border-radius:10px;padding:1rem;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .card h3{margin:0 0 0.5rem}
+    .card p{margin:0;color:#334155}
+
+    /* --- Contact --- */
+    .contact{padding:2.5rem 0}
+    form{display:grid;gap:0.75rem;max-width:600px}
+    input,textarea{padding:0.6rem;border-radius:8px;border:1px solid #cbd5e1;font-size:1rem}
+    button[type=submit]{padding:0.6rem 1rem;border-radius:8px;background:#0f172a;color:#fff;border:0;cursor:pointer}
+
+    /* --- Footer --- */
+    footer{padding:1.25rem 0;text-align:center;color:#475569}
+
+    /* --- Responsive --- */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .nav-btn{display:inline-block}
+      nav ul{display:none;position:absolute;right:1rem;top:64px;background:#fff;color:#0f172a;border-radius:8px;padding:0.5rem;box-shadow:0 6px 20px rgba(2,6,23,0.12)}
+      nav ul.show{display:flex;flex-direction:column;gap:0.5rem}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">📄 <span>SizningSayt</span></div>
+      <nav>
+        <button class="nav-btn" id="navToggle" aria-expanded="false">☰</button>
+        <ul id="navList">
+          <li><a href="#home">Bosh sahifa</a></li>
+          <li><a href="#xususiyatlar">Xususiyatlar</a></li>
+          <li><a href="#aloqa">Aloqa</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container hero" id="home">
+      <div>
+        <h1>Oddiy, tez va responsiv HTML sayt.</h1>
+        <p>Bu shablon — boshlang'ich uchun ideal: toza UI, responsiv tartib va minimal JavaScript. O'zgartirish oson.</p>
+        <a class="cta" href="#aloqa">Bog'lanish</a>
+      </div>
+      <div class="mock">
+        <h4 style="margin:0 0 0.5rem;color:#fff">Demo panel</h4>
+        <p style="margin:0 0 1rem;color:rgba(255,255,255,0.8)">Siz bu joyga rasmlar, formalar yoki boshqa komponentlarni qo'shishingiz mumkin.</p>
+        <div style="background:#fff;padding:0.75rem;border-radius:8px;color:#0f172a">Kichik kontent</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="features" id="xususiyatlar">
+      <h2 style="margin-top:0">Xususiyatlar</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Responsiv dizayn</h3>
+          <p>Har qanday ekran uchun moslashadi — telefon, planshet yoki kompyuter.</p>
+        </article>
+        <article class="card">
+          <h3>Tez yuklanish</h3>
+          <p>Minimal CSS va rasm yo'q — sahifalar tez yuklanadi.</p>
+        </article>
+        <article class="card">
+          <h3>Oson sozlash</h3>
+          <p>Ranglar, shriflar va tartibni bir necha qatorda o'zgartiring.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="aloqa">
+      <h2>Aloqa</h2>
+      <p>Agar sizga qo'shimcha xizmatlar yoki o'zgarishlar kerak bo'lsa, formani to'ldiring:</p>
+      <form id="contactForm" onsubmit="return handleSubmit(event)">
+        <input type="text" id="name" name="name" placeholder="Ismingiz" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <textarea id="message" name="message" rows="5" placeholder="Xabaringiz" required></textarea>
+        <button type="submit">Yuborish</button>
+      </form>
+      <p id="formMsg" style="color:green;display:none;margin-top:0.5rem">Xabaringiz qabul qilindi — rahmat!</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> SizningSayt. Barcha huquqlar himoyalangan.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar toggle for kichik ekranlar
+    const navToggle = document.getElementById('navToggle');
+    const navList = document.getElementById('navList');
+    navToggle.addEventListener('click', ()=>{
+      const isShown = navList.classList.toggle('show');
+      navToggle.setAttribute('aria-expanded', String(isShown));
+    });
+
+    // Form rudimentary handling (faqat demo): server yo'q, shuning uchun lokal xabar.
+    function handleSubmit(e){
+      e.preventDefault();
+      // oddiy validation
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(!name||!email||!msg){
+        alert('Iltimos barcha maydonlarni to' + "'" + 'ldiring.');
+        return false;
+      }
+      document.getElementById('contactForm').reset();
+      document.getElementById('formMsg').style.display = 'block';
+      // Bu yerda siz AJAX orqali serverga yuborishingiz mumkin.
+      return false;
+    }
+
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
